@@ -1,0 +1,58 @@
+# PhoneQ - Advanced Phone Number and IP Intelligence Tool
+
+## Overview
+
+PhoneQ is a command-line tool designed to investigate phone numbers and IP addresses, providing valuable information for cybersecurity analysis and research. This tool leverages open-source APIs to gather data, helping you to identify potential threats, analyze network activity, and gain insights into the target.
+
+## Features
+
+* **Dual Target Analysis**: Analyze both phone numbers and IP addresses.
+* **Phone Number Information**:
+    * Basic information (international/national formats, country code, country, timezone)
+    * Carrier information
+    * Geolocation (using Nominatim API)
+* **IP Address Information**:
+    * Basic IP information
+    * Geolocation (using Nominatim API)
+    * Detailed IP information (using ipinfo.io API) - *Requires API Key*
+* **Open-Source APIs**: Uses Nominatim for geolocation and ipinfo.io for IP information.
+* **Clear Reporting**: Generates reports in text or JSON format.
+* **Output to File**: Save reports to a file for further analysis.
+* **Error Handling**: Robust error handling for API requests and invalid input.
+
+## Target Audience
+
+This tool is designed for:
+
+* Cybersecurity professionals
+* Security researchers
+* Network administrators
+* Penetration testers
+* Anyone interested in gathering information about phone numbers or IP addresses for security purposes.
+
+## Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone [https://github.com/your-username/PhoneQ.git](https://www.google.com/search?q=https://github.com/your-username/PhoneQ.git)
+    cd PhoneQ
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    pip install phonenumbers requests
+    ```
+
+## Usage
+
+```bash
+python phoneq.py <target> [options]
+Arguments<target>: The phone number or IP address to investigate.Options-o, --output <format>: Output format (text or json). Default is text.-f, --file <filename>: Save the output to a file.ExamplesAnalyze a phone number and display the report in text format:python phoneq.py +15551234567
+Analyze an IP address and save the report to a JSON file:python phoneq.py 192.0.2.1 -o json -f report.json
+SetupAPI Keysipinfo.io API Key (Optional): If you want to use the IP address information gathering feature, you need to obtain an API key from ipinfo.io.  A free account provides sufficient access for many use cases.Once you have your API key, you can add it to the IPINFO_API_KEY variable in the phoneq.py file.  However, it is highly recommended to use environment variables or a configuration file for storing API keys instead of hardcoding them in the script.Configuration (Recommended for API Keys)For better security and organization, it's recommended to store your API key in an environment variable or a separate configuration file.Environment Variableexport IPINFO_API_KEY="your_ipinfo_api_key"
+Then, in your phoneq.py script, you would retrieve the key like this:import os
+
+IPINFO_API_KEY = os.environ.get("IPINFO_API_KEY")
+Code Structurephoneq.py: Main script containing the PhoneQ class and command-line interface.PhoneQ Class:__init__(self, target): Initializes the PhoneQ object.validate_target(self): Validates the target (phone number or IP address).get_basic_info(self): Retrieves basic information.get_carrier_info(self): Retrieves carrier information for phone numbers.get_geolocation(self): Retrieves geolocation information using the Nominatim API.get_ip_info(self): Retrieves IP address information using the ipinfo.io API.generate_report(self, output_format="text"): Generates a report in the specified format.run_all_checks(self): Runs all checks on the target.print_banner(): Prints the tool banner.main(): Main function to parse arguments, run the tool, and display the report.ContributingFork the repository.Create a new branch for your feature or bug fix.Make your changes.Write tests to ensure your changes work as expected.Commit
